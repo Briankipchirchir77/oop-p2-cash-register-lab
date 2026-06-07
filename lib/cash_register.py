@@ -1,3 +1,4 @@
+# Cash Register class for an e-commerce site
 class CashRegister:
     """
     A class to simulate a cash register for an e-commerce site.
@@ -67,8 +68,7 @@ class CashRegister:
         discount_amount = (self._discount / 100) * self.total
         self.total -= discount_amount
 
-        total_display = int(self.total) if self.total.is_integer() else self.total
-        print(f"After the discount, the total comes to ${total_display}.")
+        print(f"After the discount, the total comes to ${self.total}.")
 
     def void_last_transaction(self):
         """
