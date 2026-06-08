@@ -1,4 +1,3 @@
-# Cash Register class for an e-commerce site
 class CashRegister:
     """
     A class to simulate a cash register for an e-commerce site.
@@ -38,21 +37,16 @@ class CashRegister:
         price: price per single item
         quantity: how many (defaults to 1)
         """
-        # Calculate total price for this item
         item_total = price * quantity
-
-        # Add to running total
         self.total += item_total
 
-        # Add item name to items list (once per quantity)
         for _ in range(quantity):
             self.items.append(item)
 
-        # Record transaction
         self.previous_transactions.append({
             'item': item,
             'price': item_total,
-            'quantity': quantity
+            'quantity': quantity,
         })
 
     def apply_discount(self):
@@ -64,11 +58,11 @@ class CashRegister:
             print("There is no discount to apply.")
             return
 
-        # Calculate and apply discount
         discount_amount = (self._discount / 100) * self.total
         self.total -= discount_amount
 
-        print(f"After the discount, the total comes to ${self.total}.")
+        total_display = int(self.total) if float(self.total).is_integer() else self.total
+        print(f"After the discount, the total comes to ${total_display}.")
 
     def void_last_transaction(self):
         """
@@ -79,13 +73,9 @@ class CashRegister:
             print("There are no transactions to void.")
             return
 
-        # Pop last transaction
         last = self.previous_transactions.pop()
-
-        # Subtract from total
         self.total -= last['price']
 
-        # Remove items from items list
         for _ in range(last['quantity']):
             self.items.remove(last['item'])
 
